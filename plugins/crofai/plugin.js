@@ -51,10 +51,14 @@
 
     if (usableRequests !== null && usableRequests !== undefined) {
       var n = typeof usableRequests === "number" ? usableRequests : 0
+      var totalLimit = 500
+      var used = Math.max(0, totalLimit - n)
       lines.push(
-        ctx.line.text({
+        ctx.line.progress({
           label: "Requests",
-          value: String(n) + " remaining",
+          used: used,
+          limit: totalLimit,
+          format: { kind: "count", suffix: "requests" },
         })
       )
     }

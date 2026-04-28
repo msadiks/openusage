@@ -160,9 +160,11 @@ describe("crofai plugin", () => {
     expect(creditsLine.value).toBe("$12.35")
 
     const requestsLine = result.lines[1]
-    expect(requestsLine.type).toBe("text")
+    expect(requestsLine.type).toBe("progress")
     expect(requestsLine.label).toBe("Requests")
-    expect(requestsLine.value).toBe("450 remaining")
+    expect(requestsLine.used).toBe(50)
+    expect(requestsLine.limit).toBe(500)
+    expect(requestsLine.format).toEqual({ kind: "count", suffix: "requests" })
   })
 
   it("omits credits line when credits is zero", async () => {
@@ -223,7 +225,8 @@ describe("crofai plugin", () => {
     const result = plugin.probe(ctx)
 
     expect(result.lines.length).toBe(2)
-    expect(result.lines[1].value).toBe("0 remaining")
+    expect(result.lines[1].used).toBe(500)
+    expect(result.lines[1].limit).toBe(500)
   })
 
   it("omits credits line when credits is non-numeric (defaults to 0)", async () => {

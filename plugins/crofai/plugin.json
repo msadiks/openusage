@@ -11,6 +11,6 @@
   ],
   "lines": [
     { "type": "text", "label": "Credits", "scope": "overview" },
-    { "type": "text", "label": "Requests", "scope": "overview" }
+    { "type": "progress", "label": "Requests", "scope": "overview" }
   ]
 }
